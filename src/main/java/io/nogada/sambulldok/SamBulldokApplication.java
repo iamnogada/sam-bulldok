@@ -26,8 +26,8 @@ public class SamBulldokApplication {
 	@ResponseBody
 	@GetMapping(value = "/")
 	public String index() {
-	   return "home~~";
-	}
+	   return "msg jjang";
+	} 
 
 	// logger filter setting
 	@SuppressWarnings({ "rawtypes", "unchecked" })
