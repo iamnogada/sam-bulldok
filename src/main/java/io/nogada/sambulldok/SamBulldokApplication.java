@@ -26,7 +26,7 @@ public class SamBulldokApplication {
 	@ResponseBody
 	@GetMapping(value = "/")
 	public String index() {
-	   return "home";
+	   return "home~~";
 	}
 
 	// logger filter setting
