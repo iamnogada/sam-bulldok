@@ -23,6 +23,11 @@ public class SamBulldokApplication {
 	public String health() {
 	   return "ok";
 	}
+	@ResponseBody
+	@GetMapping(value = "/")
+	public String index() {
+	   return "home";
+	}
 
 	// logger filter setting
 	@SuppressWarnings({ "rawtypes", "unchecked" })
