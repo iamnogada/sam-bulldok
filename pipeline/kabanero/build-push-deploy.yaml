@@ -1,0 +1,62 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  annotations:
+    manifestival: new
+  creationTimestamp: "2020-01-10T09:40:42Z"
+  generation: 1
+  name: java-spring-boot2-build-push-deploy-pipeline
+  namespace: kabanero
+  ownerReferences:
+  - apiVersion: kabanero.io/v1alpha1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Collection
+    name: java-spring-boot2
+    uid: 3da86af2-338d-11ea-a855-0a0f498bf672
+  resourceVersion: "50508"
+  selfLink: /apis/tekton.dev/v1alpha1/namespaces/kabanero/pipelines/java-spring-boot2-build-push-deploy-pipeline
+  uid: 44c4cd89-338d-11ea-a855-0a0f498bf672
+spec:
+  params:
+  - description: The event headers
+    name: event-headers
+    type: string
+  resources:
+  - name: git-source
+    type: git
+  - name: docker-image
+    type: image
+  tasks:
+  - name: build-push-task
+    resources:
+      inputs:
+      - name: git-source
+        resource: git-source
+      outputs:
+      - name: docker-image
+        resource: docker-image
+    taskRef:
+      name: java-spring-boot2-build-push-task
+  - name: image-scan-task
+    resources:
+      inputs:
+      - name: git-source
+        resource: git-source
+      - name: docker-image
+        resource: docker-image
+    runAfter:
+    - build-push-task
+    taskRef:
+      name: java-spring-boot2-image-scan-task
+  - name: deploy-task
+    resources:
+      inputs:
+      - name: git-source
+        resource: git-source
+      - name: docker-image
+        resource: docker-image
+    runAfter:
+    - build-push-task
+    taskRef:
+      name: java-spring-boot2-deploy-task

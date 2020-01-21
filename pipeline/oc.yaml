@@ -1,0 +1,20 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: openshift-client
+  namespace: nogada
+spec:
+  inputs:
+    params:
+    - default: help
+      description: The OpenShift CLI arguments to run
+      name: ARGS
+      type: string
+  steps:
+  - args:
+    - $(inputs.params.ARGS)
+    command:
+    - /usr/local/bin/oc
+    image: quay.io/openshift-pipeline/openshift-cli:0.5.0
+    name: oc
+    resources: {}
