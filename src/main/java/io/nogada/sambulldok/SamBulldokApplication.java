@@ -26,7 +26,7 @@ public class SamBulldokApplication {
 	@ResponseBody
 	@GetMapping(value = "/")
 	public String index() {
-	   return "msg zzang !!!!!";
+	   return "msg zzang in darumland!!!!!";
 	} 
 
 	// logger filter setting
