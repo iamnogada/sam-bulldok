@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sam-bulldok
+  labels:
+    app: sam-bulldok
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sam-bulldok
+  template:
+    metadata:
+      labels:
+        app: sam-bulldok
+    spec:
+      containers:
+      - name: sam-bulldok
+        image: image-registry.openshift-image-registry.svc:5000/nogada/sam-bulldok
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "500m"
+          limits:
+            memory: "1000Mi"
+            cpu: "1000m"    
+        ports:
+        - containerPort: 8080
+          name: apport
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: apport
+          initialDelaySeconds: 3
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: apport
+          initialDelaySeconds: 1
+          periodSeconds: 3

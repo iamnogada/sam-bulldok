@@ -28,7 +28,7 @@ spec:
         deploymentconfig: sam-bulldok
     spec:
       containers:
-      - image: sam-bulldok:latest
+      - image: sam-bulldok
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3
