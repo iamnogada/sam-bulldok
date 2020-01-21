@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  creationTimestamp: "2020-01-21T09:12:25Z"
+  generateName: nogada-git-source-
+  generation: 1
+  name: nogada-git-source-8bgtb
+  namespace: nogada
+  resourceVersion: "9610665"
+  selfLink: /apis/tekton.dev/v1alpha1/namespaces/nogada/pipelineresources/nogada-git-source-8bgtb
+  uid: 240e7a57-3c2e-11ea-9a87-0266ee1de498
+spec:
+  params:
+  - name: revision
+    value: 113d06ad1223ef62907ddad19a3ee332b1f1f737
+  - name: url
+    value: https://github.com/iamnogada/sam-bulldok
+  type: git

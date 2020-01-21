@@ -28,7 +28,6 @@ spec:
     - $(outputs.resources.docker-image.url)
     image: quay.io/openshift-pipeline/s2i
     name: echo
-    resources: {}
     volumeMounts:
     - mountPath: /gen-source
       name: gen-source

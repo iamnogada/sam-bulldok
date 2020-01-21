@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  creationTimestamp: "2020-01-21T09:12:25Z"
+  generateName: nogada-docker-image-
+  generation: 1
+  name: nogada-docker-image-d44sm
+  namespace: nogada
+  resourceVersion: "9610664"
+  selfLink: /apis/tekton.dev/v1alpha1/namespaces/nogada/pipelineresources/nogada-docker-image-d44sm
+  uid: 240d1212-3c2e-11ea-9a87-0266ee1de498
+spec:
+  params:
+  - name: url
+    value: image-registry.openshift-image-registry.svc:5000/akka/sam-bulldok/sam-bulldok:113d06a
+  type: image

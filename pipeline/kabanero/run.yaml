@@ -1,0 +1,65 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"tekton.dev/v1alpha1","kind":"Pipeline","metadata":{"annotations":{},"name":"bulldok-deploy-pipeline","namespace":"nogada"},"spec":{"resources":[{"name":"git-source","type":"git"},{"name":"docker-image","type":"image"}],"tasks":[{"name":"build","params":[{"name":"TLSVERIFY","value":"false"}],"resources":{"inputs":[{"name":"source","resource":"git-source"}],"outputs":[{"name":"image","resource":"docker-image"}]},"taskRef":{"kind":"Task","name":"s2i-java-8"}},{"name":"deploy","params":[{"name":"ARGS","value":"rollout latest sam-bulldok"}],"runAfter":["build"],"taskRef":{"kind":"Task","name":"openshift-client"}}]}}
+  creationTimestamp: "2020-01-21T09:12:25Z"
+  generateName: nogada-1579597945-
+  generation: 1
+  labels:
+    app: tekton-webhook-handler
+    gitBranch: master
+    gitOrg: iamnogada
+    gitRepo: sam-bulldok
+    gitServer: github.com
+    tekton.dev/pipeline: bulldok-deploy-pipeline
+  name: nogada-1579597945-mb8nn
+  namespace: nogada
+  resourceVersion: "9610668"
+  selfLink: /apis/tekton.dev/v1alpha1/namespaces/nogada/pipelineruns/nogada-1579597945-mb8nn
+  uid: 240fe696-3c2e-11ea-9a87-0266ee1de498
+spec:
+  params:
+  - name: image-tag
+    value: 113d06a
+  - name: image-name
+    value: image-registry.openshift-image-registry.svc:5000/akka/sam-bulldok/sam-bulldok
+  - name: release-name
+    value: sam-bulldok
+  - name: repository-name
+    value: sam-bulldok
+  - name: target-namespace
+    value: nogada
+  - name: event-payload
+    value: '{"ref":"refs/heads/master","before":"f7e206525084710c3f86b115bc32ed2500f53cb0","after":"113d06ad1223ef62907ddad19a3ee332b1f1f737","created":false,"deleted":false,"forced":false,"base_ref":null,"compare":"https://github.com/iamnogada/sam-bulldok/compare/f7e206525084...113d06ad1223","commits":[{"sha":"","id":"113d06ad1223ef62907ddad19a3ee332b1f1f737","tree_id":"89ccee5cfc7a75b432794216217d0fb44cc7511c","distinct":true,"message":"trigger","timestamp":"2020-01-21T18:12:04+09:00","url":"https://github.com/iamnogada/sam-bulldok/commit/113d06ad1223ef62907ddad19a3ee332b1f1f737","author":{"name":"myguddy","email":"seungil.han@gmail.com","username":"iamnogada"},"committer":{"name":"myguddy","email":"seungil.han@gmail.com","username":"iamnogada"},"added":["k8s/deploy.yaml","k8s/deploymentoconfig.yaml","k8s/imagestream.yaml","pipeline/kabanero/build-push-deploy.yaml","pipeline/oc.yaml","pipeline/pipeline.yaml","pipeline/release.yaml","pipeline/s2i.yaml"],"removed":[],"modified":[]}],"head_commit":{"id":"113d06ad1223ef62907ddad19a3ee332b1f1f737","tree_id":"89ccee5cfc7a75b432794216217d0fb44cc7511c","distinct":true,"message":"trigger","timestamp":"2020-01-21T18:12:04+09:00","url":"https://github.com/iamnogada/sam-bulldok/commit/113d06ad1223ef62907ddad19a3ee332b1f1f737","author":{"name":"myguddy","email":"seungil.han@gmail.com","username":"iamnogada"},"committer":{"name":"myguddy","email":"seungil.han@gmail.com","username":"iamnogada"},"added":["k8s/deploy.yaml","k8s/deploymentoconfig.yaml","k8s/imagestream.yaml","pipeline/kabanero/build-push-deploy.yaml","pipeline/oc.yaml","pipeline/pipeline.yaml","pipeline/release.yaml","pipeline/s2i.yaml"],"removed":[],"modified":[]},"repository":{"id":235052855,"name":"sam-bulldok","full_name":"iamnogada/sam-bulldok","owner":{"login":"iamnogada","id":13878666,"avatar_url":"https://avatars1.githubusercontent.com/u/13878666?v=4","gravatar_id":"","url":"https://api.github.com/users/iamnogada","html_url":"https://github.com/iamnogada","followers_url":"https://api.github.com/users/iamnogada/followers","following_url":"https://api.github.com/users/iamnogada/following{/other_user}","gists_url":"https://api.github.com/users/iamnogada/gists{/gist_id}","starred_url":"https://api.github.com/users/iamnogada/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/iamnogada/subscriptions","organizations_url":"https://api.github.com/users/iamnogada/orgs","repos_url":"https://api.github.com/users/iamnogada/repos","events_url":"https://api.github.com/users/iamnogada/events{/privacy}","received_events_url":"https://api.github.com/users/iamnogada/received_events","type":"User","site_admin":false},"private":false,"html_url":"https://github.com/iamnogada/sam-bulldok","description":"","fork":false,"url":"https://github.com/iamnogada/sam-bulldok","forks_url":"https://api.github.com/repos/iamnogada/sam-bulldok/forks","keys_url":"https://api.github.com/repos/iamnogada/sam-bulldok/keys{/key_id}","collaborators_url":"https://api.github.com/repos/iamnogada/sam-bulldok/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/iamnogada/sam-bulldok/teams","hooks_url":"https://api.github.com/repos/iamnogada/sam-bulldok/hooks","issue_events_url":"https://api.github.com/repos/iamnogada/sam-bulldok/issues/events{/number}","events_url":"https://api.github.com/repos/iamnogada/sam-bulldok/events","assignees_url":"https://api.github.com/repos/iamnogada/sam-bulldok/assignees{/user}","branches_url":"https://api.github.com/repos/iamnogada/sam-bulldok/branches{/branch}","tags_url":"https://api.github.com/repos/iamnogada/sam-bulldok/tags","blobs_url":"https://api.github.com/repos/iamnogada/sam-bulldok/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/iamnogada/sam-bulldok/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/iamnogada/sam-bulldok/git/refs{/sha}","trees_url":"https://api.github.com/repos/iamnogada/sam-bulldok/git/trees{/sha}","statuses_url":"https://api.github.com/repos/iamnogada/sam-bulldok/statuses/{sha}","languages_url":"https://api.github.com/repos/iamnogada/sam-bulldok/languages","stargazers_url":"https://api.github.com/repos/iamnogada/sam-bulldok/stargazers","contributors_url":"https://api.github.com/repos/iamnogada/sam-bulldok/contributors","subscribers_url":"https://api.github.com/repos/iamnogada/sam-bulldok/subscribers","subscription_url":"https://api.github.com/repos/iamnogada/sam-bulldok/subscription","commits_url":"https://api.github.com/repos/iamnogada/sam-bulldok/commits{/sha}","git_commits_url":"https://api.github.com/repos/iamnogada/sam-bulldok/git/commits{/sha}","comments_url":"https://api.github.com/repos/iamnogada/sam-bulldok/comments{/number}","issue_comment_url":"https://api.github.com/repos/iamnogada/sam-bulldok/issues/comments{/number}","contents_url":"https://api.github.com/repos/iamnogada/sam-bulldok/contents/{+path}","compare_url":"https://api.github.com/repos/iamnogada/sam-bulldok/compare/{base}...{head}","merges_url":"https://api.github.com/repos/iamnogada/sam-bulldok/merges","archive_url":"https://api.github.com/repos/iamnogada/sam-bulldok/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/iamnogada/sam-bulldok/downloads","issues_url":"https://api.github.com/repos/iamnogada/sam-bulldok/issues{/number}","pulls_url":"https://api.github.com/repos/iamnogada/sam-bulldok/pulls{/number}","milestones_url":"https://api.github.com/repos/iamnogada/sam-bulldok/milestones{/number}","notifications_url":"https://api.github.com/repos/iamnogada/sam-bulldok/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/iamnogada/sam-bulldok/labels{/name}","releases_url":"https://api.github.com/repos/iamnogada/sam-bulldok/releases{/id}","created_at":1579508876,"updated_at":"2020-01-21T06:39:24Z","pushed_at":1579597932,"git_url":"git://github.com/iamnogada/sam-bulldok.git","ssh_url":"git@github.com:iamnogada/sam-bulldok.git","clone_url":"https://github.com/iamnogada/sam-bulldok.git","svn_url":"https://github.com/iamnogada/sam-bulldok","homepage":null,"size":23,"stargazers_count":0,"watchers_count":0,"language":"Java","has_issues":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"forks_count":0,"mirror_url":null,"open_issues_count":0,"forks":0,"open_issues":0,"watchers":0,"default_branch":"master","stargazers":0,"master_branch":"master"},"pusher":{"name":"iamnogada","email":"13878666+iamnogada@users.noreply.github.com"},"sender":{"login":"iamnogada","id":13878666,"avatar_url":"https://avatars1.githubusercontent.com/u/13878666?v=4","gravatar_id":"","url":"https://api.github.com/users/iamnogada","html_url":"https://github.com/iamnogada","followers_url":"https://api.github.com/users/iamnogada/followers","following_url":"https://api.github.com/users/iamnogada/following{/other_user}","gists_url":"https://api.github.com/users/iamnogada/gists{/gist_id}","starred_url":"https://api.github.com/users/iamnogada/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/iamnogada/subscriptions","organizations_url":"https://api.github.com/users/iamnogada/orgs","repos_url":"https://api.github.com/users/iamnogada/repos","events_url":"https://api.github.com/users/iamnogada/events{/privacy}","received_events_url":"https://api.github.com/users/iamnogada/received_events","type":"User","site_admin":false},"installation":{"id":0}}'
+  - name: event-headers
+    value: '{"Accept-Encoding":["gzip"],"Ce-Github-Delivery":["\"1c5a03bc-3c2e-11ea-922c-d529839e4685\""],"Ce-Github-Event":["\"push\""],"Ce-Id":["1c5a03bc-3c2e-11ea-922c-d529839e4685"],"Ce-Source":["https://github.com/iamnogada/sam-bulldok"],"Ce-Specversion":["0.2"],"Ce-Subject":["\"f7e206525084...113d06ad1223\""],"Ce-Time":["2020-01-21T09:12:13.815130767Z"],"Ce-Type":["dev.knative.source.github.push"],"Content-Length":["7366"],"Content-Type":["application/json"],"Forwarded":["for=10.128.2.218;proto=http,
+      for=10.131.0.21"],"K-Proxy-Request":["activator"],"User-Agent":["Go-http-client/1.1"],"X-B3-Sampled":["0"],"X-B3-Spanid":["4851224ccfad90ff"],"X-B3-Traceid":["fb39031cf5d757587401b2b4c702cc5c"],"X-Envoy-Decorator-Operation":["webhooks-extension-sink-zg5gc.tekton-pipelines.svc.cluster.local:80/*"],"X-Envoy-Expected-Rq-Timeout-Ms":["600000"],"X-Envoy-Internal":["true"],"X-Forwarded-For":["10.128.2.218,
+      10.131.0.21, 10.131.0.29"],"X-Forwarded-Proto":["http"],"X-Request-Id":["e8358f6d-da7a-470b-83a7-e76366e565f8"]}'
+  - name: branch
+    value: master
+  - name: docker-registry
+    value: image-registry.openshift-image-registry.svc:5000/akka/sam-bulldok
+  pipelineRef:
+    name: bulldok-deploy-pipeline
+  podTemplate: {}
+  resources:
+  - name: docker-image
+    resourceRef:
+      name: nogada-docker-image-d44sm
+  - name: git-source
+    resourceRef:
+      name: nogada-git-source-8bgtb
+  serviceAccount: pipeline
+  timeout: 1h0m0s
+status:
+  completionTime: "2020-01-21T09:12:25Z"
+  conditions:
+  - lastTransitionTime: "2020-01-21T09:12:25Z"
+    message: 'invalid input resources: TaskRun''s declared resources didn''t match
+      usage in Task: Didn''t provide required values: [git-source]'
+    reason: PipelineValidationFailed
+    status: "False"
+    type: Succeeded
+  startTime: "2020-01-21T09:12:25Z"

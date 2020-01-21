@@ -16,10 +16,10 @@ spec:
       value: "false"
     resources:
       inputs:
-      - name: source
+      - name: git-source
         resource: git-source
       outputs:
-      - name: image
+      - name: docker-image
         resource: docker-image
     taskRef:
       kind: Task
