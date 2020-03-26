@@ -26,9 +26,15 @@ public class SamBulldokApplication {
 	@ResponseBody
 	@GetMapping(value = "/")
 	public String index() {
-	   return "오픈쉬프트 자동빌드 성공~ MSG ZZang in darumtech.net!!!!!";
-	} 
+	   return " codeready 에서 편집 MSG ZZang in darumtech.net!!!!!";
+	}
 
+    @ResponseBody
+    @GetMapping(value="/test")
+    public String test(){
+        System.out.println("This is test log");
+        return "this is test page";
+    }
 	// logger filter setting
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Bean
