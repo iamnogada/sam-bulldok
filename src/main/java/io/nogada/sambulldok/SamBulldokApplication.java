@@ -26,7 +26,7 @@ public class SamBulldokApplication {
 	@ResponseBody
 	@GetMapping(value = "/")
 	public String index() {
-	   return " codeready 에서 편집 MSG ZZang in darumtech.net!!!!!";
+	   return " codeready 에서 편집 MSG ZZang";
 	}
 
     @ResponseBody
