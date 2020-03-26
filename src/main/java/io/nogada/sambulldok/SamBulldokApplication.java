@@ -26,7 +26,7 @@ public class SamBulldokApplication {
 	@ResponseBody
 	@GetMapping(value = "/")
 	public String index() {
-	   return "MSG ZZang in darumtech.net!!!!!";
+	   return "Build from git commit MSG ZZang in darumtech.net!!!!!";
 	} 
 
 	// logger filter setting
